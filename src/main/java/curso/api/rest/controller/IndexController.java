@@ -23,11 +23,22 @@ public class IndexController {
 	private UsuarioRepository usuarioRepository;
 	
 	/*Serviço Restful*/
-	@GetMapping(value = "/{id}", produces = "application/json") /*Acessar a raiz e produzir um JSON (return json)*/
-	public ResponseEntity<Usuario> init(@PathVariable(value = "id") Long id) {
+	@GetMapping(value = "/{id}/relatoriopdf", produces = "application/json") /*Acessar a raiz e produzir um JSON (return json)*/
+	public ResponseEntity<Usuario> relatorio(@PathVariable(value = "id") Long id) {
 		
 		Optional<Usuario> usuario = usuarioRepository.findById(id);
 		
+		/*Supondo que o retorno seria um relatório*/
+		return new ResponseEntity<Usuario>(usuario.get(), HttpStatus.OK);
+	}
+	
+	/*Serviço Restful*/
+	@GetMapping(value = "/{id}/venda/{idvenda}", produces = "application/json") /*Acessar a raiz e produzir um JSON (return json)*/
+	public ResponseEntity<Usuario> codigoVenda(@PathVariable(value = "id") Long id, @PathVariable(value = "idvenda") Long idvenda) {
+		
+		Optional<Usuario> usuario = usuarioRepository.findById(id);
+		
+		/*Supondo que o retorno seria um relatório*/
 		return new ResponseEntity<Usuario>(usuario.get(), HttpStatus.OK);
 	}
 	
